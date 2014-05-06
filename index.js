@@ -7,6 +7,12 @@ var app;
 
 module.exports = function(root) {
   app = connect()
+    .use(function(req, res, next) {
+      if (req.url == "/") {
+        req.url = "/index.html";
+      }
+      next();
+    })
     .use(function(req, res, next){
       if(req.url == '/current-time') {
         res.end(new Date().toISOString());
