@@ -3,6 +3,7 @@ var connect = require("connect");
 var serveStatic = require("serve-static");
 var makeJade = require("./lib/processor/jade")
 var makeLess = require("./lib/processor/less")
+var hideJadeLess = require("./lib/hide-jade-less");
 var app;
 
 module.exports = function(root) {
@@ -13,6 +14,7 @@ module.exports = function(root) {
       }
       next();
     })
+    .use(hideJadeLess())
     .use(function(req, res, next){
       if(req.url == '/current-time') {
         res.end(new Date().toISOString());
