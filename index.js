@@ -1,7 +1,7 @@
 var connect = require("connect");
 var app;
 
-module.exports = function() {
+module.exports = function(port) {
   app = connect();
   return app;
 }
